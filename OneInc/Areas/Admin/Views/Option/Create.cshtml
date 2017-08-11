@@ -1,0 +1,61 @@
+﻿@using OneInc.Models
+@model Option
+
+@{
+    ViewBag.Title = "Добавить ответ";
+}
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>@ViewBag.Title</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                @using (Html.BeginForm("Create", "Option", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.QuestionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(p => p.QuestionId, ViewBag.Questions as SelectList, "Выберете вопрос...", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.QuestionId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Сохранить" class="btn btn-success" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <a href="@Url.Action("Index")" class="btn btn-danger nav-btn">
+        <span class="glyphicon glyphicon-backward"></span>
+        <span class="text-right">Назад</span>
+    </a>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

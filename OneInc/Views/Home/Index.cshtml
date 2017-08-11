@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    int num = 1;
+}
+@using OneInc.Models
+@model List<Question>
+
+<div class="jumbotron">
+    <h2>Тестовое задние</h2>
+    <p class="lead">Приложение для голосования</p>
+</div>
+
+<div id="questions"></div>
+
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Нажмите кнопку и произнесите вслух вариант ответа (one, two, three ...)</h3>
+            <button id="rec-action" type="button" class="btn btn-success btn-lg" aria-label="Left Align" fn-action="rec">
+                <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+            </button>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <nav aria-label="Page navigation" class="text-center">
+            <ul class="pagination">
+                @{ 
+                    int prev = ViewBag.Current - 1;
+                    int next = ViewBag.Current + 1;
+                }
+                <li>
+                    <a href="#" class="prev" aria-label="Previous" onclick="loadPage(@prev);return false;">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for (int i = 1; i <= ViewBag.Count; i++)
+                {
+                    string active = ViewBag.Current == i? "class=active":"";
+                    <li @active data-page="@i"><a href="#" onclick="loadPage(@i);return false;">@i</a></li>
+                }
+                <li>
+                    <a href="#" class="next" aria-label="Next" onclick="loadPage(@ViewBag.Current+1);return false;">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="finishModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Спасибо за голосование</h4>
+            </div>
+            <div class="modal-body">
+                <p>Ваши голоса учтены</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/result'">Ознокомиться с результатами</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+    @section Scripts{
+
+<script src="~/Scripts/recorderWorker.js"></script>
+<script src="~/Scripts/Recorder.js"></script>
+        <script src="~/Scripts/Site.js"></script>
+
+        <script>
+
+            $(document).ready(function () {
+                loadPage(@ViewBag.Current);
+            });
+
+        </script>
+    }

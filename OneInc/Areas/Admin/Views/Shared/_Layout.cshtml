@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Alexey Shevchenko">
+
+    <title>Административная панель</title>
+
+
+        <link rel="stylesheet" href="~/Content/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/Content/lib/font-awesome/css/font-awesome.css" />
+
+        <link rel="stylesheet" href="~/Areas/Admin/Content/custom.css" />
+        <link rel="stylesheet" href="~/Areas/Admin/Content/site.css" />
+
+    
+
+    @RenderSection("styles", required: false)
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="nav-md">
+    @Html.AntiForgeryToken()
+
+    
+
+    <div class="container body">
+        <div class="main_container">
+
+            @Html.Partial("~/Areas/Admin/Views/Shared/SideMenu.cshtml")
+
+            @Html.Partial("~/Areas/Admin/Views/Shared/TopMenu.cshtml")
+
+            <div class="right_col" role="main">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="~/Content/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script src="~/Areas/Admin/Scripts/layout.js"></script>
+
+    
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

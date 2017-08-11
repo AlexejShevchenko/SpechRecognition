@@ -1,0 +1,57 @@
+﻿@using OneInc.Models
+@model Result
+
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <br />
+                <div class="table-responsive">
+                    <table class="table details">
+                        <thead>
+                            <tr>
+                                <td colspan="2">
+                                    Id @Model.Id
+                                </td>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Option.Question.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Option.Question.Title)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayNameFor(model => model.Option.Value)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.Option.Value)
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p>
+    <a href="@Url.Action("Index")" class="btn btn-danger nav-btn">
+        <span class="glyphicon glyphicon-backward"></span>
+        <span class="text-right">Назад</span>
+    </a>
+    <a href="@Url.Action("Edit", new {Id=Model.Id })" class="btn btn-warning nav-btn">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="text-right">Редактировать</span>
+    </a>
+    <a href="@Url.Action("Delete", new {Id=Model.Id })" class="btn btn-success nav-btn">
+        <span class="glyphicon glyphicon-trash"></span>
+        <span class="text-right">Удалить</span>
+    </a>
+</p>

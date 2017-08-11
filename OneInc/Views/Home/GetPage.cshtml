@@ -1,0 +1,24 @@
+﻿@using OneInc.Models
+@model Question
+@{
+    Layout = null;
+    int num = 1;
+    List<string> options = new List<string>()
+            {
+                "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"
+            };
+}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2>@Model.Title</h2>
+        <div id="questionId" data-val="@Model.Id"></div>
+        @foreach (Option op in Model.Options)
+            {
+            <p><button type="button" class="btn btn-default" onclick="sendResult(@op.Id)">@options.ElementAt(num-1)</button> @op.Value</p>
+            num++;
+        }
+    </div>
+</div>
+
+

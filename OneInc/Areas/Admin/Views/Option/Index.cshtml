@@ -1,0 +1,54 @@
+﻿@using OneInc.Models
+@model List<Option>
+
+@{
+    ViewBag.Title = "Список ответов";
+}
+
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>@ViewBag.Title</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <p>
+                    <a href="@Url.Action("Create")" class="btn btn-warning nav-btn">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span class="text-right">Добавить вопрос</span>
+                    </a>
+                </p>
+
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Вопрос</th>
+                            <th>Ответ</th>
+                            <th>Управление</th>
+                        </tr>
+                    </thead>
+                    @foreach (Option q in Model)
+                    {
+                        <tr>
+                            <td>@q.Id</td>
+                            <td>@q.Question.Title</td>
+                            <td>@q.Value</td>
+                            <td>
+                                <a href="/admin/option/details/@q.Id" class="grid-manage-icon glyphicon glyphicon-eye-open" title="Открыть"></a>
+                                <a href="/admin/option/edit/@q.Id" class="grid-manage-icon glyphicon glyphicon-pencil" title="Редактировать"></a>
+                                <a href="/admin/option/delete/@q.Id" class="grid-manage-icon glyphicon glyphicon-trash" title="Удалить"></a>
+
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

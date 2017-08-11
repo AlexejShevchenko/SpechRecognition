@@ -1,0 +1,8 @@
+﻿.grid-manage-icon {
+    padding: 0 5px;
+}
+
+.require:after{
+    content: "*";
+    color: red;
+}
